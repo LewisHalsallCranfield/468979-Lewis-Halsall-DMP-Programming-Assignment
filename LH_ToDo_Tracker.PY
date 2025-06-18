@@ -1,34 +1,15 @@
-import json
+import pandas as pd
 import os
 
-#In-memory task list
-tasks = []
-
-#Unique ID Counter
-task_id_counter = 1
-
 #file persistance 
-FILE_NAME = "tasks.json"
+FILE_NAME = "tasks.csv"
 
-#load tasks from file.
+#load tasks from a CSV.
 def load_tasks():
-    global tasks, task_id_counter
     if os.path.exists(FILE_NAME):
-        with open(FILE_NAME, "r") as file:
-            tasks_data = json.load(file)
-            tasks = tasks_data.get("tasks", [])
-            task_id_counter = tasks_data.get("task_id_counter", 1)
+        return pd.read_csv(FILE_NAME)
     else:
-        tasks = []
-        task_id_counter = 1
-
-#save tasks to file
-def save_tasks():
-    with open(FILE_NAME, "w") as file:
-        json.dump({
-            "tasks": tasks,
-            "task_id_counter": task_id_counter
-        }, file, indent=4)
+        return pd.DataFrame(columns= ["id", "name", "completed"])
 
 #main menu
 def show_menu():
@@ -53,7 +34,7 @@ def add_task():
     }
     tasks.append(task)
     task_id_counter += 1
-    save_tasks()
+    #save_tasks()
     print(f"Task '{name}' has been added to this list of tasks.")
 
 def view_tasks():
@@ -72,7 +53,7 @@ def complete_task():
     for task in tasks:
         if task["id"] == task_id:
             task["completed"] = True
-            save_tasks()
+            #save_tasks()
             print(f"Task '{task['name']}' marked as completed.")
             return
     print("Task not found.")
@@ -81,7 +62,7 @@ def delete_task():
     task_id = int(input("Enter task ID to be deleted: "))
     global tasks
     tasks = [task for task in tasks if task["id"] != task_id]
-    save_tasks()
+    #save_tasks()
     print(f"The Task {task_id} has been deleted (if it exists.)")
 
 def main():
