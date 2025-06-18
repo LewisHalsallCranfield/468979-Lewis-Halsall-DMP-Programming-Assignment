@@ -11,6 +11,16 @@ def load_tasks():
     else:
         return pd.DataFrame(columns= ["id", "name", "completed"])
 
+#save tasks to csv
+def save_tasks(df):
+    df.to_csv(FILE_NAME, index=False)
+
+#function to acquire next id.
+def get_next_id(df):
+    if df.empty:
+        return 1
+    return df["id"].max() + 1
+
 #main menu
 def show_menu():
     print("\n---TO-DO LIST MENU---")
@@ -23,47 +33,17 @@ def show_menu():
 
 # add/save/delete/complete task functions
 
-def add_task():
-    global task_id_counter
-    name = input("Enter task name: ")
-    task = {
-        "id": task_id_counter,
-        "name": name,
-        "completed": False
+#def add_task():
+    # re-factor for pandas dataframes.
 
-    }
-    tasks.append(task)
-    task_id_counter += 1
-    #save_tasks()
-    print(f"Task '{name}' has been added to this list of tasks.")
+d#ef view_tasks():
+    # re-factor for pandas dataframes.
 
-def view_tasks():
-    print("\n*************")
-    if not tasks:
-        print("No tasks available.")
-        print("******************")
-        return
-    for task in tasks:
-        status = "Done!" if task["completed"] else "NeedsDoing!"
-        print(f"{task['id']}. {task['name']} [{status}]")
-    print("******************")
+#def complete_task():
+    # re-factor for pandas dataframes.
 
-def complete_task():
-    task_id = int(input("Enter task ID to be marked as complete: "))
-    for task in tasks:
-        if task["id"] == task_id:
-            task["completed"] = True
-            #save_tasks()
-            print(f"Task '{task['name']}' marked as completed.")
-            return
-    print("Task not found.")
-
-def delete_task():
-    task_id = int(input("Enter task ID to be deleted: "))
-    global tasks
-    tasks = [task for task in tasks if task["id"] != task_id]
-    #save_tasks()
-    print(f"The Task {task_id} has been deleted (if it exists.)")
+#def delete_task():
+   # re-factor for pandas dataframes.
 
 def main():
     load_tasks()
