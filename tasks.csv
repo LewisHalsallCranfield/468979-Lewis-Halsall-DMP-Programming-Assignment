@@ -1,4 +1,5 @@
-id,name,completed
-1,Gym,False
-3,Go to Work,True
-4,Walk,True
+id,name,completed,created_at
+1,Gym,False,
+3,Go to Work,True,
+4,Walk,True,
+5,BBQ,False,2025-06-21 13:07:32.032512

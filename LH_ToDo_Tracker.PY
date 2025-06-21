@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 import os
 
 #file persistance 
@@ -8,14 +9,14 @@ CSV_FILE = "tasks.csv"
 def load_tasks():
     if not os.path.exists(CSV_FILE):
         print("CSV file not found, returning empty dataframe.")
-        return pd.DataFrame(columns=["id", "name", "completed"])
+        return pd.DataFrame(columns=["id", "name", "completed", "created_at"])
     try:
         df = pd.read_csv(CSV_FILE)
         df.columns = df.columns.str.strip()
         return df
     except Exception as e:
         print(f"Error reading CSV: {e}")
-        return pd.DataFrame(columns=["id", "name", "completed"])
+        return pd.DataFrame(columns=["id", "name", "completed", "created_at"])
 
 #save tasks to csv
 def save_tasks(df):
@@ -42,7 +43,8 @@ def show_menu():
 def add_task(df):
     name = input("Enter task name: ")
     new_id = get_next_id(df)
-    new_task = pd.DataFrame([{"id": new_id, "name": name, "completed": False}])
+    timestamp = datetime.now()
+    new_task = pd.DataFrame([{"id": new_id, "name": name, "completed": False, "created_at": timestamp}])
     df = pd.concat([df, new_task], ignore_index=True)
     save_tasks(df)
     print(f"Task '{name}' has been added to the list of tasks.")
@@ -55,7 +57,7 @@ def view_tasks(df):
         print("\n*** Your Current Tasks ***")
         for _, row in df.iterrows():
             status = "Completed!" if row["completed"] else "Needs Doing!"
-            print(f"{int(row['id'])}. {row['name']} [{status}]")
+            print(f"{int(row['id'])}. {row['name']} [{status}] {row['created_at']}")
     return
    
 def complete_task(df):
