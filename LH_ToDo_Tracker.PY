@@ -108,7 +108,7 @@ def main():
         if choice == "1":
             df = add_task(df) 
         elif choice == "2":
-            df = view_tasks(df) 
+            view_tasks(df) 
         elif choice == "3":
             df = complete_task(df)
         elif choice == "4":
