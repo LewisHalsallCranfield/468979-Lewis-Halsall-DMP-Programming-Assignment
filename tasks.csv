@@ -1,6 +1,8 @@
 id,name,completed,created_at,priority,category,due_date,completed_at
 1,Gym,True,2025-06-15 12:01:39.139134,3,General,,
 2,Homework,True,2025-06-16 12:02:50.046078,3,General,,
-3,Cleaning,True,2025-06-17 12:02:57.171784,3,General,,
+3,Cleaning,True,2025-06-17 12:02:57.171784,3,General,,2025-06-22 17:42:15.765325
 4,Placement Work,False,2025-06-20 12:03:03.370962,3,General,,
-5,Dog Walk,False,2025-06-22 12:03:14.360988,3,General,,
+5,Dog Walk,True,2025-06-22 12:03:14.360988,3,General,,2025-06-22 17:44:16.313497
+6,Cook,True,2025-06-22 17:19:33.391850,3,General,2025-07-22,2025-06-22 17:42:44.219752
+7,Clean,True,2025-06-22 17:26:32.880328,3,Personal,2025-07-13,
