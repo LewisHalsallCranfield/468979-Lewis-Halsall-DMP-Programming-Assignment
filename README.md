@@ -6,6 +6,7 @@ AI Use Declaration: As per assignment brief, I declare that I used generative AI
 
 GitHub: https://github.com/LewisHalsallCranfield/468979-Lewis-Halsall-DMP-Programming-Assignment
 Jira project: https://lh-dmp-programming-assignment.atlassian.net/jira/software/projects/MFLP/boards/1
+NOTE: My Jira page is a free account - it may not be accessable to the marker. For proof of Jira usage I added screenshots to my GitHub repository.
 
 # LH To-Do Tracker application
 LH To-Do Tracker is a command-line personal task tracker which also uses Jupyter notebook to display some data analysis and visualisation.
