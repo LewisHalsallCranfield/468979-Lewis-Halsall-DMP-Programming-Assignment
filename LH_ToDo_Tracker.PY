@@ -39,16 +39,47 @@ def show_menu():
     print("***********************")
 
 # add/save/delete/complete task functions
-
 def add_task(df):
-    name = input("Enter task name: ")
-    new_id = get_next_id(df)
-    timestamp = datetime.now()
-    new_task = pd.DataFrame([{"id": new_id, "name": name, "completed": False, "created_at": timestamp}])
-    df = pd.concat([df, new_task], ignore_index=True)
-    save_tasks(df)
-    print(f"Task '{name}' has been added to the list of tasks.")
-    return(df)
+
+    #add the name of the new task.
+    name = input ("Please enter task name to add: ")
+
+    #add the priority level, defaults to 3.
+    priority_input = input("Please enter the priority level (1-5)").strip()
+    priority = int(priority_input) if priority_input.isdigit() else 3
+
+    #add the category, defaults to 'General'
+    category = input("Please enter the category (e.g. Work, Personal, default General): ").strip() or "General"
+
+    #add a due date. 
+    due_input = input("Please enter Due date (YYYY-MM-DD) or leave blank.").strip()
+    try:
+        due_date = pd.to_datetime(due_input) if due_input else pd.NaT
+    except ValueError:
+        print("Invalid input - date will be blank for this task.")
+        due_date = pd.NaT
+    
+    #generate a new task id
+    new_id = int(df["id"].max()) + 1 if not df.empty else 1
+
+    #create the new task diction.
+    new_task = {
+        "id": new_id,
+        "name": name,
+        "completed": False,
+        "created_at": pd.to_datetime("today"),
+        "priority": priority,
+        "category": category,
+        "due_date": due_date,
+        "completed_at": pd.NaT
+    }
+
+    #append df and save
+    df = pd.concat([df, pd.DataFrame([new_task])], ignore_index = True)
+    df.to_csv("tasks.csv", index=False)
+    print("The task has been saved successfully.")
+    return df
+
 
 def view_tasks(df):
     if df is None or df.empty:
@@ -61,27 +92,19 @@ def view_tasks(df):
     return
    
 def complete_task(df):
-    
-    if df is None or df.empty:
-        print("No tasks available to complete.")
-        return df
-    
     try:
-        print("\n Current Tasks: ")
-        print(df[["id", "name", "completed"]])
-
-        task_id = int(input("\nEnter the task ID for marked as complete."))
+        task_id = int(input("Enter task ID to mark as complete: "))
 
         if task_id in df["id"].values:
             df.loc[df["id"] == task_id, "completed"] = True
-            save_tasks(df)
-            print("Task {task_id} marked as complete.")
+            df.loc[df["id"] == task_id, "completed_at"] = pd.to_datetime("today")
+            df.to_csv("tasks.csv", index=False)
+            print(f"Task {task_id} marked as completed!")
         else:
-            print("Task ID could not be found.")
-
+            print("Error: Task ID not found.")
     except ValueError:
-          print("Please enter a valid task ID.")
-
+        print("Invalid input - please enter a number.")
+    
     return df
 
 def delete_task(df):
@@ -108,7 +131,7 @@ def main():
         if choice == "1":
             df = add_task(df) 
         elif choice == "2":
-            view_tasks(df) 
+            view_tasks(df) #don't assign to prevent null overwrite of df.
         elif choice == "3":
             df = complete_task(df)
         elif choice == "4":
