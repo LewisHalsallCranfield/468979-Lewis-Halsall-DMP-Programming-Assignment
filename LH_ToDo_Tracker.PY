@@ -80,7 +80,7 @@ def add_task(df):
     print("The task has been saved successfully.")
     return df
 
-
+#method to view all tasks.
 def view_tasks(df):
     if df is None or df.empty:
         print("There are no tasks available.")
@@ -90,7 +90,8 @@ def view_tasks(df):
             status = "Completed!" if row["completed"] else "Needs Doing!"
             print(f"{int(row['id'])}. {row['name']} [{status}] {row['created_at']}")
     return
-   
+
+#method to assign completion status.   
 def complete_task(df):
     try:
         task_id = int(input("Enter task ID to mark as complete: "))
@@ -107,6 +108,7 @@ def complete_task(df):
     
     return df
 
+#method to delete tasks from dataframe.
 def delete_task(df):
     try: 
         task_id = int(input("Enter task ID to delete: "))
@@ -123,7 +125,6 @@ def delete_task(df):
 
 def main():
     df = load_tasks()
-
     while True:
         show_menu()
         choice = input("Choose an option (1-5): \n")
@@ -131,7 +132,7 @@ def main():
         if choice == "1":
             df = add_task(df) 
         elif choice == "2":
-            view_tasks(df) #don't assign to prevent null overwrite of df.
+            view_tasks(df) #don't assign df to prevent null overwrite of df.
         elif choice == "3":
             df = complete_task(df)
         elif choice == "4":

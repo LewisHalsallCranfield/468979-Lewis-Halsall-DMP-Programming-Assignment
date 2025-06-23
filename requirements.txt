@@ -1,1 +1,6 @@
-# requirements to be added.
+# Dependencies for LH_ToDo_Tracker.
+
+pandas
+matplotlib
+seaborn
+jupyter
