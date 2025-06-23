@@ -39,7 +39,6 @@ def show_menu():
     print("***********************")
 
 # add/save/delete/complete task functions
-
 def add_task(df):
 
     #add the name of the new task.
@@ -81,11 +80,6 @@ def add_task(df):
     print("The task has been saved successfully.")
     return df
 
-
-df = pd.read_csv("tasks.csv", parse_dates=["created_at", "due_date", "completed_at"])
-df.head()
-
-    
 
 def view_tasks(df):
     if df is None or df.empty:
@@ -137,7 +131,7 @@ def main():
         if choice == "1":
             df = add_task(df) 
         elif choice == "2":
-            view_tasks(df) 
+            view_tasks(df) #don't assign to prevent null overwrite of df.
         elif choice == "3":
             df = complete_task(df)
         elif choice == "4":
