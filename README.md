@@ -2,7 +2,7 @@ Application for submission for Digital Maths and Programming - Programming Assig
 
 My project has been managed using GitHub as repository, GitBash as a client for Git CLI operations Atlassian Jira as a Kanban board. It was programmed in Visual Studio Code in Python. The GitLog has been included in the uploaded Zip file containing source code on Canvas. Dependencies have been listed in the requirements file. My project was built iteratively with version control (Git) and used Jira to track planning and working tasks. I used Python's Anaconda distribution to manage dependencies. 
 
-AI Use Declaration: As per assignment brief, I declare that I used generative AI for one single task - to create a csv file that contained 50 tasks of varying priority, due dates and completion status. This was in order to make my data visualisation more meaningful for demo and display purposes. All other programming in this assignment was done by myself.
+AI Use Declaration: As per assignment brief, I declare that I used generative AI for one single task - to create a .csv file that contained 50 tasks of varying priority, due dates and completion status. This was in order to make my data visualisation more meaningful for demo and display purposes. All other programming in this assignment was done by myself.
 
 GitHub: https://github.com/LewisHalsallCranfield/468979-Lewis-Halsall-DMP-Programming-Assignment
 Jira project: https://lh-dmp-programming-assignment.atlassian.net/jira/software/projects/MFLP/boards/1
